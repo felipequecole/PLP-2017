@@ -24,7 +24,7 @@
 (defun TRI-RETAN (maior l1 l2)
 	(< 
 		(abs
-			(-isso 
+			(-
 				(+ 
 					(quadrado l1) (quadrado l2)
 				)
@@ -191,6 +191,63 @@
 	(dotimes (x n) (print (read)))
 )
 
+;exericio 18
+(defun apaga-iter (elemento lista)
+	(do ((laux lista (cdr laux)) (Res ())) ((null laux) Res) 
+		(unless (equal elemento (car laux)) 
+			(setq Res (append Res (list (car laux) )))
+		)
+	)
+)
+
+;exercicio 19
+(defun substitui-iter (x1 x2 lista)
+	(do ( (laux lista (cdr laux)) (Res ())) ((null laux) Res)
+		(cond
+			((equal x1 (car laux)) (setq Res (append Res (list x2))))
+			(t (setq Res (append Res (list (car laux)))))
+		)
+	)
+)
+
+;exercicio 20
+(defun switch (x1 x2 lista)
+	(do (laux lista (cdr laux) (Res ())) ((null laux) Res)
+		(cond
+			((equal x1 (car laux)) (setq Res (append Res (list x2))))
+			((equal x2 (car laux)) (setq Res (append Res (list x1))))
+			(t (setq Res (append Res (list (car laux)))))
+		)
+	)
+)
+
+;exercicio 22
+(defun depth (exp)
+(cond ((null exp) 1)
+((atom exp) 0)
+(t (+ (apply 'max (mapcar 'depth exp)) 1 ))))
+
+; test
+(defun gera-par (elem lista)
+	(do ((laux lista (cdr laux)) (Res ())) ((null laux) Res)
+		(setq Res (append Res (list(list elem (car laux)))))))
+
+(defun cartesiano (l1 l2)
+	(do ((laux l1 (cdr laux)) (Res ())) ((null laux) Res)
+		(setq Res (append Res (gera-par (car laux) l2)))
+	)
+)
+
+(defun pares-prova (lista)
+	(cond
+		((null lista) nil)
+		(t (do ((laux lista (cdr laux)) (Res ())) ((null laux) Res) 
+				(setq Res (append Res (list(list (car laux) (car laux)))))
+			)
+		)
+	)
+)
+
 ;exercicio 4 prova ano passado
 (defun elimina (x1 x2 lista)
 	(cond
@@ -201,12 +258,14 @@
 	)
 )
 
+;;;;;;;;;;;;;;;;;;;;;;;;
+;;(do (parametros) (cond_parada) (corpo) )
+;; parametros -> ((param1 ini1 prox1) (param2 ini2 prox2))
+;; cond_parada -> (cond retorno)
+;;;;;;;;;;;;;;;;;;;;;;;;
 ;exercicio 5 prova ano passado
-; (defun forma-pares (lista)
-; 	(dolist ()
 
-; 	)
-; )
+
 
 ( defun pares(lista)
         (cond 
